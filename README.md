@@ -1,58 +1,45 @@
-# OOP & SOLID 
+## OOP and SOLID
+
+### 1. OOP Tasks
+
+**Counter Class**  
+A stateful object with an integer `value` initialized to `0`. Implements incremental/decremental operations:
+- `incr()` → `value += 1`
+- `decr()` → `value -= 1`
+- `incrby(n)` → `value += n`
+- `decrby(n)` → `value -= n`
+
+**Triangle Class**  
+Manages a list of 2D points. Key methods:
+- `add_point(x, y)` → appends `(x, y)` to internal list
+- `perimeter()` → computes total length of triangle sides using Euclidean distance
+- `__eq__(other)` → compares two triangles by point set (order-independent equality)
 
 ---
 
-## Project Overview
+### 2. SOLID – Data Munging (Kata04)
 
-Two hands-on exercises:
+**Objective**:  
+Parse `weather.dat` and `football.dat` to find:
+- Day with smallest temperature spread (`Max - Min`)
+- Team with smallest goal difference (`F - A`)
 
-1. **OOP**: `Counter` & `Triangle` classes (`OOPS.py`)
-2. **SOLID**: Data Munging (Kata04) using 5 modular files
+**Development Flow**:
+1. **Spike** → Rapid prototype (`spike.py`) to confirm logic and data format
+2. **Refactor** → 5 modular classes adhering to SOLID
 
----
+**Classes & Responsibilities**:
+| Class | Role |
+|------|------|
+| `DataExtractor` | Reads file, skips headers, extracts columns |
+| `DataAnalyzer`  | Computes absolute difference, finds minimum |
+| `Calculator`    | Orchestrates extraction → analysis |
 
-## Folder Structure
+**SOLID Compliance**:
+- **SRP**: Each class has one job
+- **OCP**: New datasets via configuration
+- **DIP**: `Calculator` depends on abstractions
+- **ISP**: Minimal, focused methods
+- **No Magic Numbers**: Column indices named (e.g., `DAY = 0`, `GOALS_FOR = 6`)
 
-OOP_TASK/
-├── data/
-│   ├── weather.dat
-│   └── football.dat
-├── src/
-│   ├── calculator.py
-│   ├── data_analyzer.py
-│   ├── data_extractor.py
-│   ├── OOPS.py
-│   ├── soccer.py
-│   ├── spike.py
-│   └── weather.py
-├── requirements.txt
-├── .gitignore
-└── README.md
-
-
----
-
-## How to Run
-
-```bash
-cd OOP_TASK
-
-# OOP: Counter + Triangle
-python3 src/OOPS.py
-
-# SOLID: Weather Analysis
-python3 src/weather.py
-
-# SOLID: Soccer Analysis
-python3 src/soccer.py
-
-# Spike (Quick Prototype)
-python3 src/spike.py
-
-
-
-
-**Expected Output**
-
-textWeather: Day 14 has smallest spread: 6
-Soccer: Team 'Arsenal' has smallest F-A diff: 1
+**Outcome**: Clean, testable, extensible code from a validated spike.
