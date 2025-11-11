@@ -43,3 +43,4 @@ Parse `weather.dat` and `football.dat` to find:
 - **No Magic Numbers**: Column indices named (e.g., `DAY = 0`, `GOALS_FOR = 6`)
 
 **Outcome**: Clean, testable, extensible code from a validated spike.
+
